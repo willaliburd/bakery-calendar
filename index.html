@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Truck Calendar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subscribe-info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .subscribe-link {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .subscribe-link:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .event-tile {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        }
+
+        .event-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .event-date {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .event-location {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .event-time {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .menu-section {
+            margin-top: 15px;
+        }
+
+        .menu-title {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .menu-item {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 50px;
+        }
+
+        .no-events {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 50px;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚚 Food Truck Schedule</h1>
+            <p>Find us at these awesome locations!</p>
+        </div>
+
+        <div class="subscribe-info">
+            <h3>📅 Subscribe to Our Calendar</h3>
+            <p>Never miss us! Add our calendar to your phone or computer:</p>
+            <a href="calendar.ics" class="subscribe-link">📱 Subscribe to Calendar</a>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                Copy this link: <code id="subscribe-url">https://yourusername.github.io/your-repo/calendar.ics</code>
+            </p>
+        </div>
+
+        <div id="calendar-container">
+            <div class="loading">Loading upcoming events...</div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - in real implementation, this would come from events.json
+        const sampleEvents = [
+            {
+                date: "2025-06-15",
+                time: "11:00 AM - 3:00 PM",
+                location: "Downtown Farmers Market",
+                address: "123 Main St, Downtown",
+                menu: ["Gourmet Burgers", "Loaded Fries", "Craft Sodas", "Veggie Wraps"]
+            },
+            {
+                date: "2025-06-18",
+                time: "5:00 PM - 9:00 PM",
+                location: "Business District Food Truck Rally",
+                address: "456 Corporate Blvd",
+                menu: ["BBQ Pulled Pork", "Mac & Cheese", "Coleslaw", "Cornbread"]
+            },
+            {
+                date: "2025-06-22",
+                time: "12:00 PM - 4:00 PM",
+                location: "Riverside Park Festival",
+                address: "789 Park Ave",
+                menu: ["Fish Tacos", "Shrimp Po'boy", "Cajun Fries", "Lemonade"]
+            },
+            {
+                date: "2025-06-25",
+                time: "6:00 PM - 10:00 PM",
+                location: "Night Market",
+                address: "321 Evening St",
+                menu: ["Korean BBQ Bowl", "Kimchi Fries", "Bubble Tea", "Mochi Ice Cream"]
+            }
+        ];
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function renderEvents(events) {
+            const container = document.getElementById('calendar-container');
+            
+            if (events.length === 0) {
+                container.innerHTML = '<div class="no-events">No upcoming events scheduled. Check back soon!</div>';
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = 'calendar-grid';
+
+            events.forEach(event => {
+                const tile = document.createElement('div');
+                tile.className = 'event-tile';
+                
+                tile.innerHTML = `
+                    <div class="event-date">${formatDate(event.date)}</div>
+                    <div class="event-location">${event.location}</div>
+                    <div class="event-time">⏰ ${event.time}</div>
+                    <div style="color: #666; margin-bottom: 15px;">📍 ${event.address}</div>
+                    <div class="menu-section">
+                        <div class="menu-title">🍽️ Today's Menu</div>
+                        <div class="menu-items">
+                            ${event.menu.map(item => `<span class="menu-item">${item}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(tile);
+            });
+
+            container.innerHTML = '';
+            container.appendChild(grid);
+        }
+
+        // Load events from events.json
+        async function loadEvents() {
+            try {
+                const response = await fetch('events.json');
+                const events = await response.json();
+                renderEvents(events);
+                
+            } catch (error) {
+                console.error('Error loading events:', error);
+                document.getElementById('calendar-container').innerHTML = 
+                    '<div class="no-events">Sorry, there was an error loading events. Please try again later.</div>';
+            }
+        }
+
+        // Update subscribe URL with actual GitHub Pages URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUrl = window.location.href;
+            const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+            document.getElementById('subscribe-url').textContent = baseUrl + 'calendar.ics';
+            
+            loadEvents();
+        });
+    </script>
+</body>
+</html>
