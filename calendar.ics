@@ -1,0 +1,32 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Food Truck Calendar//Food Truck Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Food Truck Schedule
+X-WR-CALDESC:Follow our food truck for delicious meals at various locations!
+X-WR-TIMEZONE:America/New_York
+
+BEGIN:VEVENT
+UID:20250617-tuesdaynightmarket@foodtruck-calendar.github.io
+DTSTAMP:20250616T174817
+DTSTART:20250617T160000
+DTEND:20250617T190000
+SUMMARY:Food Truck at Tuesday Night Market
+DESCRIPTION:Join us for great food!\n\nToday's Menu: Pastry Flight, Sugar City Slices with raisin filling, Vegan Handpies, Orange sesame loaf (Keto and Allergy-Friendly options), Saltfish rolls, Beef Patties\n\nLocation: Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN
+LOCATION:Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+BEGIN:VEVENT
+UID:20250621-elletsvillefarmer'smarket@foodtruck-calendar.github.io
+DTSTAMP:20250616T174817
+DTSTART:20250621T090000
+DTEND:20250621T130000
+SUMMARY:Food Truck at Elletsville Farmer's Market
+DESCRIPTION:Join us for great food!\n\nToday's Menu: Banana bread, Chocolate Cake, Sugar City Slices with coconut filling, Allergen Friendly Orange sesame loaf\n\nLocation: 203 East Temperance Street, Elletsville, IN (Chandler Funeral Home parking lot)
+LOCATION:203 East Temperance Street, Elletsville, IN (Chandler Funeral Home parking lot)
+STATUS:CONFIRMED
+SEQUENCE:0
+END:VEVENT
+END:VCALENDAR
