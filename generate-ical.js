@@ -61,17 +61,17 @@ function getEndTime(dateString, timeString) {
 function generateUID(event) {
     const dateStr = event.date.replace(/-/g, '');
     const locationStr = event.location.replace(/\s+/g, '').toLowerCase();
-    return `${dateStr}-${locationStr}@foodtruck-calendar.github.io`;
+    return `${dateStr}-${locationStr}@sugarcityslices.com`;
 }
 
 // Generate iCal content
 let icalContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Food Truck Calendar//Food Truck Events//EN
+PRODID:-//Sugar City Slices Calendar//Sugar City Slices Events//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Food Truck Schedule
-X-WR-CALDESC:Follow our food truck for delicious meals at various locations!
+X-WR-CALNAME:Sugar City Slices Schedule
+X-WR-CALDESC:Follow us for delicious Antillean Fusion Pastries at various locations!
 X-WR-TIMEZONE:America/New_York
 `;
 
@@ -91,7 +91,7 @@ UID:${uid}
 DTSTAMP:${now}
 DTSTART:${startTime}
 DTEND:${endTime}
-SUMMARY:Food Truck at ${event.location}
+SUMMARY:Sugar City Slices at ${event.location}
 DESCRIPTION:${description}
 LOCATION:${event.address}
 STATUS:CONFIRMED
