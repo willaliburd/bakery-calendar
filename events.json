@@ -1,16 +1,16 @@
 [
   {
-    "date": "2025-06-17",
-    "time": "4:00 PM - 7:00 PM",
-    "location": "Tuesday Night Market",
-    "address": "Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN",
-    "menu": ["Pastry Flight", "Sugar City Slices with raisin filling", "Vegan Handpies", "Orange sesame loaf (Keto and Allergy-Friendly options)", "Saltfish rolls", "Beef Patties"]
-  },
-  {
     "date": "2025-06-21",
     "time": "9:00 AM - 1:00 PM",
     "location": "Elletsville Farmer's Market",
     "address":"203 East Temperance Street, Elletsville, IN (Chandler Funeral Home parking lot)",
-    "menu": ["Banana bread", "Chocolate Cake", "Sugar City Slices with coconut filling", "Allergen Friendly Orange sesame loaf"]
-  }
+    "menu": ["Banana bread", "Apple Cake", "Sugar City Slices with raisin filling", "Allergen Friendly Orange sesame loaf"]
+  },
+    {
+    "date": "2025-06-24",
+    "time": "4:00 PM - 7:00 PM",
+    "location": "Tuesday Night Market",
+    "address": "Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN",
+    "menu": ["Tuesday night flight (varied pastries"]
+  },
 ]
