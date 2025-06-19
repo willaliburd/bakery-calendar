@@ -9,7 +9,7 @@ X-WR-TIMEZONE:America/New_York
 
 BEGIN:VEVENT
 UID:20250621-elletsvillefarmer'smarket@sugarcityslices.com
-DTSTAMP:20250619T195035
+DTSTAMP:20250619T195706
 DTSTART:20250621T090000
 DTEND:20250621T130000
 SUMMARY:Sugar City Slices at Elletsville Farmer's Market
@@ -20,11 +20,11 @@ SEQUENCE:0
 END:VEVENT
 BEGIN:VEVENT
 UID:20250624-tuesdaynightmarket@sugarcityslices.com
-DTSTAMP:20250619T195035
+DTSTAMP:20250619T195706
 DTSTART:20250624T160000
 DTEND:20250624T190000
 SUMMARY:Sugar City Slices at Tuesday Night Market
-DESCRIPTION:Join us for great food!\n\nToday's Menu: Tuesday night flight (varied pastries\n\nLocation: Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN
+DESCRIPTION:Join us for great food!\n\nToday's Menu: Tuesday night flight (varied pastries)\n\nLocation: Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN
 LOCATION:Hopewell Commons, 322 W. University Street, Downtown Bloomington, IN
 STATUS:CONFIRMED
 SEQUENCE:0
