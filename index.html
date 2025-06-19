@@ -189,40 +189,12 @@
     </div>
 
     <script>
-        // Sample data - in real implementation, this would come from events.json
-        const sampleEvents = [
-            {
-                date: "2025-06-15",
-                time: "11:00 AM - 3:00 PM",
-                location: "Downtown Farmers Market",
-                address: "123 Main St, Downtown",
-                menu: ["Gourmet Burgers", "Loaded Fries", "Craft Sodas", "Veggie Wraps"]
-            },
-            {
-                date: "2025-06-18",
-                time: "5:00 PM - 9:00 PM",
-                location: "Business District Food Truck Rally",
-                address: "456 Corporate Blvd",
-                menu: ["BBQ Pulled Pork", "Mac & Cheese", "Coleslaw", "Cornbread"]
-            },
-            {
-                date: "2025-06-22",
-                time: "12:00 PM - 4:00 PM",
-                location: "Riverside Park Festival",
-                address: "789 Park Ave",
-                menu: ["Fish Tacos", "Shrimp Po'boy", "Cajun Fries", "Lemonade"]
-            },
-            {
-                date: "2025-06-25",
-                time: "6:00 PM - 10:00 PM",
-                location: "Night Market",
-                address: "321 Evening St",
-                menu: ["Korean BBQ Bowl", "Kimchi Fries", "Bubble Tea", "Mochi Ice Cream"]
-            }
-        ];
-
         function formatDate(dateString) {
-            const date = new Date(dateString);
+            // Parse the date components directly to avoid timezone issues
+            const [year, month, day] = dateString.split('-').map(num => parseInt(num));
+            // Create date using local timezone (month is 0-indexed)
+            const date = new Date(year, month - 1, day);
+            
             const options = { 
                 weekday: 'long', 
                 year: 'numeric', 
